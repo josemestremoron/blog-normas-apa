@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Estudia Mejor | Blog de Hábitos y Técnicas de Estudio</title>
+    <!-- Google Fonts + Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f8fafc;
+            font-family: 'Inter', sans-serif;
+            color: #0f172a;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        .site-header {
+            background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255,255,255,0.98);
+            backdrop-filter: blur(4px);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .logo h1 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #0f2b3d, #1e4a6e);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.3px;
+        }
+
+        .logo span {
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: #3b6e9e;
+            display: block;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.8rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #1e293b;
+            transition: 0.2s;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        .hero-blog {
+            background: linear-gradient(110deg, #eef2ff 0%, #ffffff 80%);
+            padding: 2.5rem 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .hero-blog h2 {
+            font-size: 2.2rem;
+            font-family: 'Merriweather', serif;
+            color: #0c4a6e;
+        }
+
+        .hero-blog p {
+            font-size: 1.1rem;
+            color: #334155;
+            max-width: 700px;
+        }
+
+        /* Grid de artículos */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .card {
+            background: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.05);
+            transition: all 0.25s ease;
+            border: 1px solid #eef2f6;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
+        }
+
+        .card-img {
+            height: 160px;
+            background: linear-gradient(135deg, #1e4b6e, #2a6f9c);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .badge {
+            background: #e0f2fe;
+            color: #0369a1;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 0.8rem;
+        }
+
+        .card h3 {
+            font-size: 1.35rem;
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+        }
+
+        .card p {
+            color: #334155;
+            margin-bottom: 1.2rem;
+            font-size: 0.9rem;
+        }
+
+        .btn-card {
+            background: none;
+            border: none;
+            color: #2563eb;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Sección de tests interactivos */
+        .tests-section {
+            background: #f1f5f9;
+            border-radius: 2rem;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .test-card {
+            background: white;
+            border-radius: 1.2rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        .question {
+            font-weight: 700;
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .options {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .option-btn {
+            background: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            padding: 0.4rem 1.4rem;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .option-btn:hover {
+            background: #e2e8f0;
+        }
+
+        .feedback {
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+            border-radius: 12px;
+        }
+
+        .correct-feedback {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .wrong-feedback {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        /* Estilos para horario */
+        .horario-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.75rem;
+        }
+        .horario-table th, .horario-table td {
+            border: 1px solid #cbd5e1;
+            padding: 8px 6px;
+            text-align: center;
+        }
+        .horario-table th {
+            background: #eef2ff;
+            font-weight: 600;
+        }
+
+        /* Estilos para subrayado */
+        .subrayado-ejemplo {
+            background: #fffbe6;
+            padding: 1rem;
+            border-left: 4px solid #f59e0b;
+            margin: 1rem 0;
+            border-radius: 12px;
+        }
+        .subrayado-principal {
+            background-color: #ffe0a3;
+            font-weight: bold;
+        }
+        .subrayado-secundario {
+            background-color: #c9e9f6;
+        }
+
+        /* Esquema */
+        .esquema-minimal {
+            background: #f8fafc;
+            padding: 1rem;
+            border-radius: 16px;
+            font-family: 'Inter', monospace;
+            font-size: 0.85rem;
+            border: 1px solid #e2e8f0;
+            margin: 1rem 0;
+        }
+
+        /* Video */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            margin: 1rem 0;
+            border-radius: 1rem;
+            overflow: hidden;
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        footer {
+            background: #0f172a;
+            color: #cbd5e1;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        @media (max-width: 700px) {
+            .navbar {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero-blog h2 {
+                font-size: 1.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <h1>📘 Estudia Mejor</h1>
+                <span>Blog de hábitos & técnicas de estudio</span>
+            </div>
+            <div class="nav-links">
+                <a href="#inicio">Inicio</a>
+                <a href="#articulos">Artículos</a>
+                <a href="#tests">Tests</a>
+                <a href="#horario-sec">Horario</a>
+                <a href="#apa">Normas APA</a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="hero-blog" id="inicio">
+    <div class="container">
+        <h2>🎓 Conviértete en un estudiante estratégico</h2>
+        <p>Hábitos, técnicas de estudio, organización y motivación. Aprende de la historia de Julieta y aplica métodos que funcionan. Incluye test VAK, horario personal, técnicas de subrayado, esquema, resumen y normas APA.</p>
+    </div>
+</section>
+
+<main class="container">
+    <!-- Grid de artículos principales -->
+    <div class="blog-grid" id="articulos">
+        <!-- ARTÍCULO 1: Hábitos de estudio -->
+        <div class="card">
+            <div class="card-img"><i class="fas fa-clock"></i></div>
+            <div class="card-content">
+                <span class="badge">HÁBITOS</span>
+                <h3>¿Por qué los hábitos de estudio predicen el éxito?</h3>
+                <p>Valverde (2012) afirma que los hábitos de estudio son mejor predictor del éxito académico que la inteligencia. "Primero hacemos nuestros hábitos, y luego nuestros hábitos nos hacen" — John Dryden.</p>
+                <button class="btn-card" onclick="alert('📖 Los hábitos comprenden aquellas acciones que determinan la relación frente al estudio. Requieren disciplina, organización del tiempo y un lugar adecuado.')">Leer más →</button>
+            </div>
+        </div>
+        <!-- ARTÍCULO 2: Subrayado y esquemas -->
+        <div class="card">
+            <div class="card-img"><i class="fas fa-highlighter"></i></div>
+            <div class="card-content">
+                <span class="badge">TÉCNICAS</span>
+                <h3>Subrayado + Esquemas: la dupla perfecta</h3>
+                <p>El subrayado jerarquiza ideas y el esquema las conecta visualmente. El esquema es una consecuencia del subrayado que crea lazos según jerarquía entre conceptos.</p>
+                <button class="btn-card" onclick="alert('✍️ Consejo: Usa máximo 2 colores al subrayar. El esquema puede ser numerado, radial, diagrama de flujo o línea de tiempo.')">Leer más →</button>
+            </div>
+        </div>
+        <!-- ARTÍCULO 3: Administración del tiempo + Horario -->
+        <div class="card">
+            <div class="card-img"><i class="fas fa-calendar-alt"></i></div>
+            <div class="card-content">
+                <span class="badge">ORGANIZACIÓN</span>
+                <h3>Administra tu tiempo: 7 ideas clave</h3>
+                <p>Planifica con 15 min diarios, empieza por lo difícil y elimina distracciones. Calendariza todo y prioriza el 20% que realmente importa.</p>
+                <button class="btn-card" onclick="alert('⏱️ Tip: Usa la técnica pomodoro: 45 min estudio + 10 min pausa. Organiza tu semana cada domingo.')">Leer más →</button>
+            </div>
+        </div>
+        <!-- ARTÍCULO 4: Test VAK -->
+        <div class="card">
+            <div class="card-img"><i class="fas fa-brain"></i></div>
+            <div class="card-content">
+                <span class="badge">NEUROEDUCACIÓN</span>
+                <h3>Test VAK: Visual, auditivo o kinestésico</h3>
+                <p>Identifica tu canal de percepción dominante. Los kinestésicos necesitan movimiento; los visuales, mapas; los auditivos, debates. ¡Haz el test más abajo!</p>
+                <button class="btn-card" onclick="document.getElementById('tests').scrollIntoView({behavior:'smooth'});">Ir al test VAK →</button>
+            </div>
+        </div>
+        <!-- ARTÍCULO 5: El método para resumir (6 pasos) -->
+        <div class="card">
+            <div class="card-img"><i class="fas fa-file-alt"></i></div>
+            <div class="card-content">
+                <span class="badge">SÍNTESIS</span>
+                <h3>Cómo hacer un resumen en 6 pasos</h3>
+                <p>Lectura profunda, subrayado, mapa conceptual y redacción con tus palabras. Reduce cualquier texto a 1/3 sin perder lo esencial.</p>
+                <button class="btn-card" onclick="alert('📝 Pasos: 1. Prelectura 2. Lectura comprensiva 3. Subrayado 4. Esquema 5. Redacta con tus palabras 6. Revisa y compara.')">Leer más →</button>
+            </div>
+        </div>
+        <!-- ARTÍCULO 6: El caso de Julieta -->
+        <div class="card">
+            <div class="card-img"><i class="fas fa-user-graduate"></i></div>
+            <div class="card-content">
+                <span class="badge">HISTORIA REAL</span>
+                <h3>Julieta: de la frustración al método</h3>
+                <p>Julieta mejoró sus hábitos pero aún batalla con la síntesis. Descubre cómo superar la resistencia a la lectura y argumentar mejor.</p>
+                <button class="btn-card" onclick="alert('👩‍🎓 Julieta ya tiene rutina y lugar de estudio. Ahora debe practicar subrayado + esquemas + resúmenes semanales. ¡Ella puede lograrlo!')">Leer más →</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECCIÓN HORARIO PERSONAL -->
+    <div style="margin: 2rem 0;" id="horario-sec">
+        <h2 style="margin-bottom: 1rem;"><i class="fas fa-calendar-week"></i> Mi horario personal semanal</h2>
+        <div class="card" style="padding: 1.5rem;">
+            <p><strong>Organización del tiempo:</strong> Planifico cada domingo con 15 minutos. Empiezo por las tareas difíciles y uso la técnica 45/10.</p>
+            <table class="horario-table">
+                <thead>
+                    <tr><th>Hora/Día</th><th>Lunes</th><th>Martes</th><th>Miércoles</th><th>Jueves</th><th>Viernes</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>7:00 - 8:30</td><td>Lectura</td><td>Estudio independiente</td><td>Repaso</td><td>Ejercicios</td><td>Prelectura</td></tr>
+                    <tr><td>9:00 - 10:30</td><td>Clase virtual</td><td>Clase presencial</td><td>Clase virtual</td><td>Taller grupal</td><td>Clase principal</td></tr>
+                    <tr><td>11:00 - 12:30</td><td>Subrayado</td><td>Esquemas</td><td>Resúmenes</td><td>Investigación</td><td>Revisión de apuntes</td></tr>
+                    <tr><td>15:00 - 16:30</td><td>Deporte</td><td>Tiempo libre</td><td>Deporte</td><td>Familia</td><td>Trabajo</td></tr>
+                    <tr><td>19:00 - 20:30</td><td>Repaso semanal</td><td>Organización</td><td>Ver video APA</td><td>Esquema integrador</td><td>Autoevaluación</td></tr>
+                </tbody>
+            </table>
+            <p><strong>7 ideas clave que aplico:</strong> 1) Planificar 15 min/día, 2) Calendarizar todo, 3) Empezar por lo difícil, 4) Identificar el 20% importante, 5) Eliminar distracciones, 6) Priorizar, 7) No dejarse presionar.</p>
+        </div>
+    </div>
+
+    <!-- SECCIÓN DE TESTS INTERACTIVOS (VAK + Desafíos) -->
+    <div class="tests-section" id="tests">
+        <h2 style="margin-bottom: 1rem;"><i class="fas fa-question-circle"></i> Test VAK + Pon a prueba tu conocimiento</h2>
+        <p style="margin-bottom: 1.5rem;">Descubre tu estilo de aprendizaje y responde los desafíos inspirados en Julieta y Felipe.</p>
+
+        <!-- TEST VAK COMPLETO -->
+        <div class="test-card">
+            <div class="question">🧠 TEST VAK: ¿Cuál es tu canal perceptual dominante?</div>
+            <div id="vakQuestions">
+                <div style="margin-bottom: 12px;"><strong>1.</strong> Cuando estudio, prefiero: <br>
+                    <label><input type="radio" name="vak1" value="visual"> Ver diagramas y gráficos</label>
+                    <label><input type="radio" name="vak1" value="auditivo"> Escuchar explicaciones orales</label>
+                    <label><input type="radio" name="vak1" value="kinestesico"> Hacer mientras aprendo</label>
+                </div>
+                <div style="margin-bottom: 12px;"><strong>2.</strong> Recuerdo mejor: <br>
+                    <label><input type="radio" name="vak2" value="visual"> Las caras de las personas</label>
+                    <label><input type="radio" name="vak2" value="auditivo"> Los nombres y conversaciones</label>
+                    <label><input type="radio" name="vak2" value="kinestesico"> Lo que hicimos juntos</label>
+                </div>
+                <div style="margin-bottom: 12px;"><strong>3.</strong> Para concentrarme necesito: <br>
+                    <label><input type="radio" name="vak3" value="visual"> Orden visual y pocos objetos</label>
+                    <label><input type="radio" name="vak3" value="auditivo"> Silencio absoluto</label>
+                    <label><input type="radio" name="vak3" value="kinestesico"> Poder moverme o caminar</label>
+                </div>
+                <div style="margin-bottom: 12px;"><strong>4.</strong> Aprendo más cuando: <br>
+                    <label><input type="radio" name="vak4" value="visual"> Veo imágenes o presentaciones</label>
+                    <label><input type="radio" name="vak4" value="auditivo"> Hablo y explico el tema</label>
+                    <label><input type="radio" name="vak4" value="kinestesico"> Lo practico físicamente</label>
+                </div>
+                <div style="margin-bottom: 12px;"><strong>5.</strong> En un examen preferiría: <br>
+                    <label><input type="radio" name="vak5" value="visual"> Preguntas escritas con gráficos</label>
+                    <label><input type="radio" name="vak5" value="auditivo"> Examen oral</label>
+                    <label><input type="radio" name="vak5" value="kinestesico"> Demostrar con un proyecto práctico</label>
+                </div>
+            </div>
+            <button class="option-btn" id="calcularVAK" style="background:#2563eb; color:white; border:none;">Calcular mi estilo VAK</button>
+            <div id="vakResultado" class="feedback" style="margin-top: 1rem;"></div>
+        </div>
+
+        <!-- Test 1: Hábitos -->
+        <div class="test-card" id="test1">
+            <div class="question">📌 1. Según el texto, ¿casi todo lo que aprendemos se trabaja a través de internet?</div>
+            <div class="options">
+                <button class="option-btn" data-test="1" data-value="false">Falso</button>
+                <button class="option-btn" data-test="1" data-value="true">Verdadero</button>
+            </div>
+            <div class="feedback" id="feedback1"></div>
+        </div>
+
+        <!-- Test 2: Subrayado -->
+        <div class="test-card" id="test2">
+            <div class="question">✍️ 2. ¿Subrayar es la técnica que busca resaltar ideas principales y permite establecer niveles de jerarquización?</div>
+            <div class="options">
+                <button class="option-btn" data-test="2" data-value="false">Falso</button>
+                <button class="option-btn" data-test="2" data-value="true">Verdadero</button>
+            </div>
+            <div class="feedback" id="feedback2"></div>
+        </div>
+
+        <!-- Test 3: Esquema -->
+        <div class="test-card" id="test3">
+            <div class="question">🗺️ 3. El esquema es una técnica independiente que no requiere del subrayado previo.</div>
+            <div class="options">
+                <button class="option-btn" data-test="3" data-value="false">Verdadero</button>
+                <button class="option-btn" data-test="3" data-value="true">Falso</button>
+            </div>
+            <div class="feedback" id="feedback3"></div>
+        </div>
+
+        <!-- Test 4 -->
+        <div class="test-card" id="test4">
+            <div class="question">📚 4. ¿El esquema es una consecuencia del subrayado y crea jerarquías entre conceptos, ideas principales y secundarias?</div>
+            <div class="options">
+                <button class="option-btn" data-test="4" data-value="false">Falso</button>
+                <button class="option-btn" data-test="4" data-value="true">Verdadero</button>
+            </div>
+            <div class="feedback" id="feedback4"></div>
+        </div>
+
+        <!-- Test 5 -->
+        <div class="test-card" id="test5">
+            <div class="question">⏳ 5. Según el texto, ¿establecer tiempos de estudio de 45-50 minutos con pausas de 10-15 minutos mejora la concentración?</div>
+            <div class="options">
+                <button class="option-btn" data-test="5" data-value="false">Falso</button>
+                <button class="option-btn" data-test="5" data-value="true">Verdadero</button>
+            </div>
+            <div class="feedback" id="feedback5"></div>
+        </div>
+    </div>
+
+    <!-- SECCIÓN TÉCNICAS DE ESTUDIO: Subrayado + Esquema + Resumen 6 pasos -->
+    <div style="margin: 2rem 0;">
+        <h2 style="margin-bottom: 1rem;"><i class="fas fa-book-open"></i> Técnicas de estudio aplicadas</h2>
+        
+        <!-- Texto con subrayado (simulación 10 páginas) -->
+        <div class="card">
+            <h3>📖 Texto: "Aprendizaje autónomo y técnicas de estudio"</h3>
+            <p><small>Extensión simulada de 10 páginas. A continuación, fragmento con técnica de subrayado.</small></p>
+            <div class="subrayado-ejemplo">
+                <p><span class="subrayado-principal">El estudio independiente fortalece procesos de autonomía y pensamiento crítico.</span> <span class="subrayado-secundario">No se lleva a cabo con presencia del docente, pero sí bajo su tutoría.</span> Según la Asociación de Maestros de Puerto Rico (1987), el estudio autodirigido supone control sobre metas. <span class="subrayado-principal">Las habilidades de lectura comprensiva, análisis y síntesis son la base para construir aprendizajes significativos.</span> Asimismo, la organización del tiempo y la concentración optimizan el rendimiento. <span class="subrayado-secundario">Los canales de percepción (visual, auditivo, kinestésico) determinan la forma más eficaz de procesar información.</span></p>
+                <p><small>✔️ <strong>Subrayado:</strong> doble trazo (ideas principales) y simple (ideas secundarias).</small></p>
+            </div>
+        </div>
+
+        <!-- Esquema jerárquico -->
+        <div class="card">
+            <h3>🗺️ Esquema de conceptos (jerarquía)</h3>
+            <div class="esquema-minimal">
+                <strong>TÍTULO: TÉCNICAS DE ESTUDIO EFECTIVAS</strong><br><br>
+                1. Hábitos de estudio<br>
+                &nbsp;&nbsp;1.1 Disciplina y rutina<br>
+                &nbsp;&nbsp;1.2 Ambiente de estudio (iluminación, orden, sin distractores)<br>
+                2. Técnicas de procesamiento de información<br>
+                &nbsp;&nbsp;2.1 Subrayado (jerarquía de ideas, colores)<br>
+                &nbsp;&nbsp;2.2 Esquemas (radial, numerado, diagramas de flujo)<br>
+                &nbsp;&nbsp;2.3 Resumen en 6 pasos<br>
+                3. Organización del tiempo<br>
+                &nbsp;&nbsp;3.1 Planificación semanal<br>
+                &nbsp;&nbsp;3.2 Regla 45/10 (pomodoro)<br>
+                4. Estilos de aprendizaje VAK<br>
+                &nbsp;&nbsp;4.1 Visual → mapas, colores<br>
+                &nbsp;&nbsp;4.2 Auditivo → debates, audio<br>
+                &nbsp;&nbsp;4.3 Kinestésico → movimiento, ejemplos reales
+            </div>
+        </div>
+
+        <!-- Resumen con 6 pasos -->
+        <div class="card">
+            <h3>📝 Resumen del texto (seguimiento de 6 pasos)</h3>
+            <p><strong>Paso 1 - Lectura global:</strong> Leí el texto completo dos veces para entender la estructura general.<br>
+            <strong>Paso 2 - Identificar estructura:</strong> Localicé introducción, desarrollo teórico y ejemplos prácticos sobre hábitos y técnicas.<br>
+            <strong>Paso 3 - Subrayar información importante:</strong> Señalé conceptos clave: estudio independiente, autonomía, técnicas VAK, subrayado, esquema.<br>
+            <strong>Paso 4 - Mapa conceptual / Esquema:</strong> Organicé las ideas en el esquema jerárquico mostrado arriba.<br>
+            <strong>Paso 5 - Redacción con mis palabras:</strong> Las técnicas de estudio son herramientas que permiten ordenar el trabajo y priorizar. El estudio independiente desarrolla autonomía, mientras que el subrayado y el esquema ayudan a la síntesis visual. Conocer el canal perceptual (VAK) mejora la concentración y el rendimiento. Los buenos hábitos requieren disciplina y un ambiente adecuado.<br>
+            <strong>Paso 6 - Revisión:</strong> Comparé con el original, verifiqué coherencia y ortografía. El resumen mantiene las ideas centrales.</p>
+            <p><em>➡️ El resumen final reduce el contenido a 1/3 de la extensión original.</em></p>
+        </div>
+    </div>
+
+    <!-- SECCIÓN VIDEO NORMAS APA -->
+<!-- SECCIÓN VIDEO NORMAS APA (VERSIÓN QUE SÍ FUNCIONA) -->
+<div style="margin: 2rem 0;" id="apa">
+    <h2 style="margin-bottom: 1rem;"><i class="fas fa-quote-right"></i> Normas APA 7ª edición</h2>
+    <div class="card">
+        <p>Las normas APA son esenciales para citar fuentes, elaborar referencias y dar credibilidad a los trabajos académicos.</p>
+        
+        <!-- VIDEO CON ENLACE DIRECTO (SIN ERROR 153) -->
+        <div style="background: #0f172a; padding: 2rem; border-radius: 1rem; text-align: center; margin: 1.5rem 0;">
+            <i class="fab fa-youtube" style="font-size: 4rem; color: #ff0000;"></i>
+            <p style="color: white; margin: 1rem 0; font-weight: 500;">📹 Normas APA 7ª edición - Explicación práctica</p>
+            <p style="color: #94a3b8; margin-bottom: 1rem; font-size: 0.85rem;">Video elaborado por: Anilkar José Mestre Morón</p>
+            <a href="https://youtu.be/_zoUmC6UyNs" target="_blank" style="background: #2563eb; color: white; padding: 0.6rem 2rem; border-radius: 40px; text-decoration: none; display: inline-block; font-weight: 600;">▶ Ver video en YouTube</a>
+        </div>
+        
+        <p><strong>Ejemplo de referencia según APA 7:</strong><br>
+        Valverde, A. (2012). <em>Hábitos de estudio y rendimiento académico</em>. Editorial Educativa.<br>
+        Flores, R. (2016). La lectura funcional en el aprendizaje. <em>Revista de Pedagogía</em>, 34(2), 45-60.<br>
+        Asociación de Maestros de Puerto Rico. (1987). <em>Estudio independiente y autonomía</em>.</p>
+    </div>
+</div>
+
+    <!-- Guía rápida para Julieta -->
+    <div style="background: #e6f7f0; border-radius: 1.5rem; padding: 1.8rem; margin: 2rem 0;">
+        <h3><i class="fas fa-lightbulb"></i> El camino de Julieta hacia la síntesis</h3>
+        <p><strong>Problema:</strong> Dificultad para sintetizar textos largos y argumentar.<br>
+        <strong>Solución práctica:</strong> Aplicar la secuencia: <strong>Prelectura → Lectura comprensiva → Subrayado (2 colores) → Esquema radial o numerado → Resumen (reducir a 1/3) → Explicación oral</strong>. Dedica 1 hora diaria al estudio independiente.</p>
+        <p style="margin-top: 1rem;">✨ <strong>Frase clave:</strong> “Primero hacemos nuestros hábitos, y luego nuestros hábitos nos hacen” — John Dryden.</p>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <p>© 2025 Estudia Mejor · Blog inspirado en técnicas de estudio, hábitos académicos y el caso de Julieta.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem;">“Construye hábitos, alcanza metas” · Video con fines académicos | Créditos: Office Para Todos (YouTube)</p>
+    </div>
+</footer>
+
+<script>
+    // Test VAK
+    document.getElementById('calcularVAK').addEventListener('click', function() {
+        let puntos = { visual:0, auditivo:0, kinestesico:0 };
+        for(let i=1; i<=5; i++) {
+            let seleccion = document.querySelector(`input[name="vak${i}"]:checked`);
+            if(seleccion) puntos[seleccion.value]++;
+        }
+        let tipo = Object.keys(puntos).reduce((a,b) => puntos[a] > puntos[b] ? a : b);
+        let mensaje = "";
+        if(tipo === 'visual') mensaje = "🎨 Eres VISUAL: aprendes mejor con mapas, colores, esquemas y organizadores gráficos.";
+        else if(tipo === 'auditivo') mensaje = "🎧 Eres AUDITIVO: prefieres explicaciones orales, debates y grabaciones. Estudiar en voz alta te ayuda.";
+        else mensaje = "🏃 Eres KINESTÉSICO: necesitas movimiento, pausas activas y ejemplos prácticos. Estudia caminando o con modelos.";
+        document.getElementById('vakResultado').innerHTML = `<div class="feedback correct-feedback"><strong>${tipo.toUpperCase()}</strong><br>${mensaje}<br>Puntajes: Visual ${puntos.visual}, Auditivo ${puntos.auditivo}, Kinestésico ${puntos.kinestesico}.</div>`;
+    });
+
+    // Tests de conocimiento
+    const testsConfig = {
+        1: { correct: "false", message: "✅ Correcto. El texto dice que casi todo se aprende a través de la LECTURA, no de internet." },
+        2: { correct: "true", message: "✅ ¡Correcto! Subrayar resalta ideas principales y establece jerarquías." },
+        3: { correct: "true", message: "✅ Correcto. La afirmación era FALSA porque el esquema SÍ requiere subrayado previo (es consecuencia)." },
+        4: { correct: "true", message: "✅ Exacto. El esquema es consecuencia del subrayado y organiza conceptos por jerarquías." },
+        5: { correct: "true", message: "✅ Cierto. Intervalos de 45-50 min con pausas de 10-15 optimizan la concentración." }
+    };
+
+    document.querySelectorAll('.option-btn[data-test]').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const testId = this.getAttribute('data-test');
+            const selectedValue = this.getAttribute('data-value');
+            const config = testsConfig[testId];
+            const feedbackDiv = document.getElementById(`feedback${testId}`);
+            
+            if (selectedValue === config.correct) {
+                feedbackDiv.innerHTML = `<div class="feedback correct-feedback">${config.message}</div>`;
+            } else {
+                let errorMsg = `❌ Incorrecto. ${config.correct === "true" ? "La respuesta correcta es Verdadero." : "La respuesta correcta es Falso."}`;
+                if (testId === '1') errorMsg = `❌ Incorrecto. La respuesta correcta es Falso: el texto habla de la lectura como medio principal, no internet.`;
+                if (testId === '3') errorMsg = `❌ Incorrecto. La afirmación es FALSA: el esquema SÍ necesita subrayado previo.`;
+                feedbackDiv.innerHTML = `<div class="feedback wrong-feedback">${errorMsg}</div>`;
+            }
+            feedbackDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        });
+    });
+
+    // Navegación suave
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if(href && href !== '#') {
+                e.preventDefault();
+                const element = document.querySelector(href);
+                if(element) element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+</script>
+</body>
+</html>
